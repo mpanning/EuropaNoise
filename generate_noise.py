@@ -52,15 +52,18 @@ def wtcoef(t,t1,t2,t3,t4):
     return wt
 
 # Details for noise record calculation
-#instaseisDB = "/Volumes/Samsung/EuropaZbLowVUpper30kmMantle20km0WtPctMgSO4"
-#db_short = 'ice20'
-#instaseisDB = "/Volumes/Samsung/EuropaZbLowVUpper30kmMantle20km0WtPctMgSO4_lowIceQ"
-#db_short = 'ice20_lowQ'
-instaseisDB = "http://holodeck:8765"
-#instaseisDB = "/export/data/staehler/mnt_supermuc/axisem/SOLVER/Europa_5km_1Hz_stronghet_10_0/"
-db_short = 'ice5_scat'
-#instaseisDB = "/Volumes/Samsung/EuropaZbLowVUpper30kmMantle5km0WtPctMgSO4_lowIceQ"
+instaseisDB = "http://instaseis.ethz.ch/icy_ocean_worlds/Eur005km-00pMS-hQ_hyd30km_2s"
+db_short = 'ice5'
+#instaseisDB = "http://instaseis.ethz.ch/icy_ocean_worlds/Eur005km-00pMS-lQ_hyd30km_2s"
 #db_short = 'ice5_lowQ'
+#instaseisDB = "http://instaseis.ethz.ch/icy_ocean_worlds/Eur020km-00pMS-hQ_hyd30km_2s"
+#db_short = 'ice20'
+#instaseisDB = "http://instaseis.ethz.ch/icy_ocean_worlds/Eur020km-00pMS-lQ_hyd30km_2s"
+#db_short = 'ice20_lowQ'
+#instaseisDB = "http://instaseis.ethz.ch/icy_ocean_worlds/Eur005km-00pMS-lQ_hyd30km_scatter_2s"
+#db_short = 'ice5_scat'
+
+
 taperFrac = 0.05 #end taper length as fraction of db record length
 #endCutFrac = 0.5 #Allows cutting of end of records to remove numerical probs
 endCutFrac = 0.0 #Allows cutting of end of records to remove numerical probs
