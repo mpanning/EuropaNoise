@@ -6,6 +6,7 @@ import sys
 import glob
 import math
 import numpy as np
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 from operator import itemgetter
@@ -69,7 +70,7 @@ fig = plt.figure(figsize=(13.0, 13.0))
 for i, model in enumerate(models):
     # Loop over catalogs to make lines in figure panel
     for j, catalog in enumerate(catalogs):
-        db_short = model + '.' + catalog
+        db_short = model + '.' + catalog + '_cat'
         filenames = glob.glob('noise_records/*%s*.%s' % (db_short,comp))
 
         print 'noise_records/*%s*.%s' % (db_short,comp)
@@ -85,8 +86,8 @@ for i, model in enumerate(models):
 
         ppsd = PPSD(tr_tmp.stats, paz, db_bins=[-300, -50, 5],
                     period_limits=[0.5, 500])
-        ndays = math.ceil((tr_tmp.stats.endtime
-                           - tr_tmp.stats.starttime)/secday)
+        ndays = int(math.ceil((tr_tmp.stats.endtime
+                               - tr_tmp.stats.starttime)/secday))
 
         # Load all files in list filenames and modify the startdates to make
         # them consecutive
@@ -133,11 +134,12 @@ for i, model in enumerate(models):
     if i > 1:
         plt.xlabel('Period (s)')
     if (i == 0 or i == 2):
-        plt.ylabel(r'Spectral density ($m^2/s^4$) (dB)') 
+        plt.ylabel(r'Power ($m^2/s^4/Hz$) (dB)') 
 
     plt.title(titles[i])
     if i == 1:
-        ax.legend(bbox_to_anchor=(1.1, 1.05), fancybox=True)
+        mpl.rcParams['legend.fontsize'] = 'small'
+        ax.legend(bbox_to_anchor=(1.1, 1), fancybox=True)
 
 
 # Add in panel labels

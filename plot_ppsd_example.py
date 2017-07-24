@@ -6,6 +6,7 @@ import sys
 import glob
 import math
 import numpy as np
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 from operator import itemgetter
@@ -95,10 +96,10 @@ zipsort = sorted(zip(power, Ps, freqs), key=itemgetter(0))
 Ps = [x[1] for x in zipsort]
 freqs = [x[2] for x in zipsort] 
 
-ppsd = PPSD(tr_tmp.stats, paz, db_bins=[-300, -50, 5],
-            period_limits=[0.5, 500])
+ppsd = PPSD(tr_tmp.stats, paz, db_bins=[-300, -25, 5],
+            period_limits=[0.5, 500], ppsd_length=600.0)
 secday = 24.0 * 3600.0
-ndays = math.ceil((tr_tmp.stats.endtime - tr_tmp.stats.starttime)/secday)
+ndays = int(math.ceil((tr_tmp.stats.endtime - tr_tmp.stats.starttime)/secday))
 
 # Load all files in list filenames and modify the startdates to make
 # them consecutive
@@ -142,6 +143,8 @@ color['Trillium_compact'] = 'fuchsia'
 #h = ppsd.plot(period_lim=[0.5,500], show=False,
 #              show_coverage=False, max_percentage=15)
 # plt.figure(num=1, figsize=(20.0,20.0))
+# Try to make title disappear
+mpl.rcParams['axes.titlesize'] = 0
 ppsd.plot(period_lim=[0.5,500], show=False,
           show_coverage=False, max_percentage=12)
 #ax = h.axes[0]
